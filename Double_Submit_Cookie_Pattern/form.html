@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+
+            function setCookie(cname, cvalue) {
+                var d = new Date();
+
+                document.cookie = cname + "=" + cvalue + ";path=/";
+            }
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            setCookie("user", "ishan" + Math.random());
+
+            $(document).ready(function () {
+                document.getElementById("hid_token").value = getCookie("user");
+
+            });
+        </script>
+
+    </head>
+    <body>
+        <div><form action="server.php" method="POST">
+                <div><label>name</label><br><input type="text" name="name123"> </div>
+                <div><label>phone number</label><br><input type="text" name="phonenum"> </div>
+                <div><label>address</label><br><input type="text" name="address"> </div>
+                <div><br><input type="text"   name="token" id="hid_token"> </div>
+                <div><br><input type="submit" > </div>
+
+            </form>
+        </div>
+
+
+    </body>
+</html>
